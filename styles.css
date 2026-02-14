@@ -94,6 +94,7 @@ body {
     -webkit-text-fill-color: transparent;
     color: transparent;
     text-align: center;
+    line-height: 0.78;
     pointer-events: none;
     z-index: 2;
     text-transform: uppercase;
