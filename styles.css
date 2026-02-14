@@ -94,7 +94,6 @@ body {
     -webkit-text-fill-color: transparent;
     color: transparent;
     text-align: center;
-    line-height: 0.78;
     pointer-events: none;
     z-index: 2;
     text-transform: uppercase;
@@ -103,7 +102,7 @@ body {
 /* Subtitle (VOD / live text - below title) */
 .subtitle {
     position: absolute;
-    top: 560px;
+    top: 580px;
     left: 50%;
     transform: translateX(-50%);
     width: 900px;
