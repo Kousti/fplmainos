@@ -317,15 +317,24 @@
         var savedScale = wrap.style.getPropertyValue('--canvas-scale');
         var savedPosition = wrap.style.position;
         var savedLeft = wrap.style.left;
+        var savedOverflow = canvasEl.style.overflow;
+        var savedTransform = canvasEl.style.transform;
         wrap.style.width = DESIGN_W + 'px';
         wrap.style.height = DESIGN_H + 'px';
         wrap.style.setProperty('--canvas-scale', '1');
         wrap.style.position = 'fixed';
         wrap.style.left = '-99999px';
-        window.htmlToImage.toPng(canvasEl, {
-            pixelRatio: 2,
-            backgroundColor: '#030617'
-        }).then(function (dataUrl) {
+        wrap.style.overflow = 'visible';
+        canvasEl.style.overflow = 'visible';
+        /* Shift content up so title + shadow aren’t clipped at top; bottom is cropped slightly */
+        canvasEl.style.transform = 'translateY(-50px)';
+        function doCapture() {
+            return window.htmlToImage.toPng(canvasEl, {
+                pixelRatio: 2,
+                backgroundColor: '#030617'
+            });
+        }
+        doCapture().then(function (dataUrl) {
             try {
                 var link = document.createElement('a');
                 link.download = 'fpl-sunnuntain-tulokset.png';
@@ -355,6 +364,9 @@
             console.error(err);
             alert('Kuvan luonti epäonnistui.');
         }).finally(function () {
+            canvasEl.style.overflow = savedOverflow || '';
+            canvasEl.style.transform = savedTransform || '';
+            wrap.style.overflow = '';
             wrap.style.width = savedWidth;
             wrap.style.height = savedHeight;
             wrap.style.setProperty('--canvas-scale', savedScale || '');
