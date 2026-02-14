@@ -3,8 +3,8 @@ name: Update matches
 
 on:
   schedule:
-    # Run every day at 08:00 UTC (e.g. 10:00 / 11:00 in Finland depending on DST)
-    - cron: "0 8 * * *"
+    # Run every hour around game time (15–00 Finland ≈ 12–23 UTC) – ~12 runs/day, ~360/month
+    - cron: "0 12-23 * * *"
   workflow_dispatch:
     # Allow "Run workflow" from the Actions tab
 

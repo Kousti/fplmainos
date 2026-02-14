@@ -6,7 +6,7 @@ This guide explains how to use the **Update matches** GitHub Action so that `mat
 
 ## What the workflow does
 
-1. **Runs on a schedule** – Every day at **08:00 UTC** (e.g. 10:00 or 11:00 in Finland, depending on daylight saving).
+1. **Runs on a schedule** – By default **every hour around game time** (12:00–23:00 UTC, i.e. 15:00–00:00 in Finland). That’s about 12 runs per day, ~360 per month – still within the free limit.
 2. **Runs on demand** – You can trigger it manually from the GitHub **Actions** tab (**Run workflow**).
 3. **Steps it runs:**
    - Checks out your repo.
@@ -109,18 +109,16 @@ Optional: in Vercel → **Settings** → **Git** you can see which branch is use
 
 ---
 
-## Step 5: Schedule (already set)
+## Step 5: Schedule
 
-The workflow file already contains a schedule:
+The workflow file contains a schedule. The default is **every hour around game time** (12:00–23:00 UTC = 15:00–00:00 in Finland), so about 12 runs per day (~360 per month) – still within the free limit.
 
 ```yaml
 schedule:
-  - cron: "0 8 * * *"
+  - cron: "0 12-23 * * *"
 ```
 
-That means **every day at 08:00 UTC**. GitHub runs scheduled workflows from the default branch; they may be delayed a few minutes.
-
-To change the time, edit `.github/workflows/update-matches.yml` and adjust the cron (e.g. `0 6 * * *` for 06:00 UTC). Then commit and push the change.
+To run less often (e.g. every 2 hours in that window), use `0 12-23/2 * * *`. To run once a day, use `0 8 * * *`. GitHub runs scheduled workflows from the default branch; they may be delayed a few minutes.
 
 ---
 
@@ -134,7 +132,18 @@ To change the time, edit `.github/workflows/update-matches.yml` and adjust the c
 | 4 | Connect the repo to Vercel and deploy so each push (including from the Action) redeploys the site. |
 | 5 | Schedule is already in the workflow (daily at 08:00 UTC). |
 
-After this, the Action will update `matches.json` every day and push it; Vercel will redeploy so the live app always uses the latest matches.
+After this, the Action will update `matches.json` on the schedule you set and push it; Vercel will redeploy so the live app gets the latest data.
+
+---
+
+## Whose resources does the Action use?
+
+**GitHub’s.** The workflow runs on **GitHub-hosted runners** (e.g. `runs-on: ubuntu-latest`). Those are virtual machines provided by GitHub:
+
+- **Public repos:** You get a free allowance of minutes per month (e.g. 2,000 for the free plan). After that, you can pay for more or use self-hosted runners.
+- **Private repos:** Free tier has a smaller allowance; paid plans include more minutes.
+
+So your own PC or server is not used; the job runs entirely on GitHub’s infrastructure. With **every hour during 15:00–00:00 Finland time** you get about 360 runs per month and stay under the free allowance.
 
 ---
 
