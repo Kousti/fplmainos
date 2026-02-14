@@ -58,17 +58,15 @@ body {
 
 /* FPL Logo */
 .fpl-logo {
-    position: absolute;
-    top: 1.78%; /* 24/1350 */
+    position: relative;
+    width: 140px;
     left: 50%;
     transform: translateX(-50%);
-    width: 140px;
 }
 
 /* Title (Sunnuntain tulokset) – % so it stays proportional to canvas */
 .main-title {
-    position: absolute;
-    top: 8%;
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
     width: 74.07%; /* 800/1080 */
