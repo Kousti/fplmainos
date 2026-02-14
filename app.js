@@ -288,9 +288,22 @@
         });
     }
 
+    var DESIGN_W = 1080;
+    var DESIGN_H = 1350;
+
+    function updateCanvasScale() {
+        var wrap = document.getElementById('canvas-wrap');
+        if (!wrap) return;
+        var scale = Math.min(1, window.innerHeight / DESIGN_H, (window.innerWidth - 48) / DESIGN_W);
+        wrap.style.setProperty('--canvas-scale', scale);
+        wrap.style.width = Math.round(DESIGN_W * scale) + 'px';
+        wrap.style.height = Math.round(DESIGN_H * scale) + 'px';
+    }
+
     function downloadImage() {
         var canvasEl = document.querySelector('.canvas');
-        if (!canvasEl || !window.htmlToImage || typeof window.htmlToImage.toPng !== 'function') {
+        var wrap = document.getElementById('canvas-wrap');
+        if (!canvasEl || !wrap || !window.htmlToImage || typeof window.htmlToImage.toPng !== 'function') {
             alert('Lataus ei käytössä. Tarkista, että html-to-image latautuu.');
             return;
         }
@@ -299,6 +312,16 @@
             btn.disabled = true;
             btn.textContent = 'Luodaan…';
         }
+        var savedWidth = wrap.style.width;
+        var savedHeight = wrap.style.height;
+        var savedScale = wrap.style.getPropertyValue('--canvas-scale');
+        var savedPosition = wrap.style.position;
+        var savedLeft = wrap.style.left;
+        wrap.style.width = DESIGN_W + 'px';
+        wrap.style.height = DESIGN_H + 'px';
+        wrap.style.setProperty('--canvas-scale', '1');
+        wrap.style.position = 'fixed';
+        wrap.style.left = '-99999px';
         window.htmlToImage.toPng(canvasEl, {
             pixelRatio: 2,
             backgroundColor: '#030617'
@@ -331,6 +354,13 @@
             }
             console.error(err);
             alert('Kuvan luonti epäonnistui.');
+        }).finally(function () {
+            wrap.style.width = savedWidth;
+            wrap.style.height = savedHeight;
+            wrap.style.setProperty('--canvas-scale', savedScale || '');
+            wrap.style.position = savedPosition || '';
+            wrap.style.left = savedLeft || '';
+            updateCanvasScale();
         });
     }
 
@@ -340,6 +370,8 @@
         updateTitle();
         updateSubtitle();
         [1, 2, 3].forEach(updateMatch);
+        updateCanvasScale();
+        window.addEventListener('resize', updateCanvasScale);
         setupListeners();
         var downloadBtn = document.getElementById('download-btn');
         if (downloadBtn) downloadBtn.addEventListener('click', downloadImage);

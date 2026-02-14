@@ -25,11 +25,20 @@ body {
     box-sizing: border-box;
 }
 
+/* Wrapper so canvas scales to fit viewport (fixes title cut-off on small screens) */
+.canvas-wrap {
+    flex-shrink: 0;
+    max-height: 100vh;
+    max-width: 100%;
+    overflow: hidden;
+}
 .canvas {
     position: relative;
     width: 1080px;
     height: 1350px;
     overflow: hidden;
+    transform-origin: top center;
+    transform: scale(var(--canvas-scale, 1));
 }
 
 /* Background */
