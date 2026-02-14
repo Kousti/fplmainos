@@ -1,0 +1,116 @@
+{
+  "results": [
+    {
+      "Date": "12 FEBRUARY 2026",
+      "Time": "22:00",
+      "Match": "RGF vs B5",
+      "Score": "2 – 1"
+    },
+    {
+      "Date": "12 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "FRM vs BW",
+      "Score": "0 – 2"
+    },
+    {
+      "Date": "10 FEBRUARY 2026",
+      "Time": "19:00",
+      "Match": "LAR vs MF",
+      "Score": "2 – 0"
+    },
+    {
+      "Date": "9 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "MF vs SIC",
+      "Score": "2 – 0"
+    },
+    {
+      "Date": "8 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "RGF vs EA",
+      "Score": "2 – 1"
+    },
+    {
+      "Date": "8 FEBRUARY 2026",
+      "Time": "19:00",
+      "Match": "TAGX vs FRM",
+      "Score": "1 – 2"
+    },
+    {
+      "Date": "8 FEBRUARY 2026",
+      "Time": "18:00",
+      "Match": "ETM vs BW",
+      "Score": "0 – 2"
+    },
+    {
+      "Date": "8 FEBRUARY 2026",
+      "Time": "17:00",
+      "Match": "B5 vs LAR",
+      "Score": "2 – 0"
+    },
+    {
+      "Date": "5 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "LAR vs TAGX",
+      "Score": "1 – 2"
+    },
+    {
+      "Date": "5 FEBRUARY 2026",
+      "Time": "19:00",
+      "Match": "EA vs ETM",
+      "Score": "2 – 0"
+    }
+  ],
+  "upcoming": [
+    {
+      "Date": "15 FEBRUARY 2026",
+      "Time": "18:00",
+      "Match": "ETM vs TAGX"
+    },
+    {
+      "Date": "15 FEBRUARY 2026",
+      "Time": "19:00",
+      "Match": "LAR vs SIC"
+    },
+    {
+      "Date": "15 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "BW vs EA"
+    },
+    {
+      "Date": "18 FEBRUARY 2026",
+      "Time": "18:00",
+      "Match": "BW vs TAGX"
+    },
+    {
+      "Date": "19 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "RGF vs SIC"
+    },
+    {
+      "Date": "19 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "FRM vs B5"
+    },
+    {
+      "Date": "22 FEBRUARY 2026",
+      "Time": "18:00",
+      "Match": "EA vs LAR"
+    },
+    {
+      "Date": "22 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "MF vs FRM"
+    },
+    {
+      "Date": "25 FEBRUARY 2026",
+      "Time": "19:00",
+      "Match": "MF vs ETM"
+    },
+    {
+      "Date": "26 FEBRUARY 2026",
+      "Time": "18:00",
+      "Match": "B5 vs MF"
+    }
+  ]
+}

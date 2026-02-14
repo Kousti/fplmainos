@@ -1,0 +1,13 @@
+# Joukkueen tag = nimi auki kirjoitettuna
+# Muokkaa tätä tiedostoa jos nimet muuttuvat.
+
+ETM=Ei Tää Mee
+EA=Epic Avalanche
+B5=Bastu Five
+MF=Möhköfantit
+BW=BlueWhites Esports
+FRM=Finnish Red Mafia
+TAGX=TagX
+SIC=SIC Esports
+LAR=Lows And Randoms
+RGF=Rich Gang Finland

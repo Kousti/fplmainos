@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8" />
+    <title>FPL Sunnuntain Tulokset</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="canvas">
+    <img src="Layers/Group 7.png" class="bg" />
+    <img src="Layers/FPL white.png" class="fpl-logo" />
+    <div class="main-title">
+        <span class="main-title-text-wrap">
+            <span class="main-title-text" id="main-title-text">sunnuntain tulokset</span>
+        </span>
+    </div>
+    <div class="subtitle subtitle-text" id="subtitle-text">PELIEN VODIT YOUTUBESSA @FINNHOUSELOL</div>
+
+    <!-- MATCH 1 -->
+    <img src="Layers/Rectangle 1 2.png" class="match match1-bg" />
+    <img src="Layers/SIC 150.png" class="team match1-left" id="m1-logo-left" alt="" />
+    <div class="team-name team-name-text match1-left-name" id="m1-name-left">SIC</div>
+    <div class="score score-text match1-score" id="m1-score">0–2</div>
+    <div class="team-name team-name-text match1-right-name" id="m1-name-right">BW</div>
+    <img src="Layers/BW 150.png" class="team match1-right" id="m1-logo-right" alt="" />
+
+    <!-- MATCH 2 -->
+    <img src="Layers/Rectangle 1 3.png" class="match match2-bg" />
+    <img src="Layers/EA 150.png" class="team match2-left" id="m2-logo-left" alt="" />
+    <div class="team-name team-name-text match2-left-name" id="m2-name-left">EA</div>
+    <div class="score score-text match2-score" id="m2-score">2–0</div>
+    <div class="team-name team-name-text match2-right-name" id="m2-name-right">FRM</div>
+    <img src="Layers/FRM 150.png" class="team match2-right" id="m2-logo-right" alt="" />
+
+    <!-- MATCH 3 -->
+    <img src="Layers/Rectangle 1 4.png" class="match match3-bg" />
+    <img src="Layers/B5 150.png" class="team match3-left" id="m3-logo-left" alt="" />
+    <div class="team-name team-name-text match3-left-name" id="m3-name-left">B5</div>
+    <div class="score score-text match3-score" id="m3-score">2–0</div>
+    <div class="team-name team-name-text match3-right-name" id="m3-name-right">TAGX</div>
+    <img src="Layers/TAGX 150.png" class="team match3-right" id="m3-logo-right" alt="" />
+</div>
+
+<aside class="controls">
+    <h2>Päivitä tulokset</h2>
+    <p class="controls-hint">Valitse joukkueet ja tulokset – grafiikka päivittyy heti.</p>
+
+    <fieldset class="match-control">
+        <legend>Otsikko</legend>
+        <label>Otsikko <input type="text" id="input-main-title" value="sunnuntain tulokset" placeholder="sunnuntain tulokset" /></label>
+    </fieldset>
+    <fieldset class="match-control">
+        <legend>Alaotsikko</legend>
+        <label>Alaotsikko <input type="text" id="input-subtitle" value="PELIEN VODIT YOUTUBESSA @FINNHOUSELOL" placeholder="PELIEN VODIT YOUTUBESSA @FINNHOUSELOL" /></label>
+    </fieldset>
+
+    <fieldset class="match-control">
+        <legend>Hae otteludata</legend>
+        <p class="controls-hint">Aja ensin <code>python scrapematches.py</code> ja käynnistä sivu palvelimella (esim. Live Server).</p>
+        <label class="day-select-label">Mitä haluat luoda? <select id="input-data-type" class="day-select">
+            <option value="">– Valitse tyyppi –</option>
+            <option value="tulokset">Tulokset</option>
+            <option value="ottelut">Ottelut</option>
+        </select></label>
+        <label class="day-select-label">Päivä <select id="input-day" class="day-select" disabled><option value="">– Valitse päivä –</option></select></label>
+    </fieldset>
+    <fieldset class="match-control" id="match-control-1">
+        <legend>Ottelu 1</legend>
+        <label>Koti <select id="input-m1-left" data-match="1" data-side="left">
+            <option value="B5">B5</option>
+            <option value="BW">BW</option>
+            <option value="EA">EA</option>
+            <option value="ETM">ETM</option>
+            <option value="FRM">FRM</option>
+            <option value="LAR">LAR</option>
+            <option value="MF">MF</option>
+            <option value="RGF">RGF</option>
+            <option value="SIC" selected>SIC</option>
+            <option value="TAGX">TAGX</option>
+        </select></label>
+        <label>Vieras <select id="input-m1-right" data-match="1" data-side="right">
+            <option value="B5">B5</option>
+            <option value="BW" selected>BW</option>
+            <option value="EA">EA</option>
+            <option value="ETM">ETM</option>
+            <option value="FRM">FRM</option>
+            <option value="LAR">LAR</option>
+            <option value="MF">MF</option>
+            <option value="RGF">RGF</option>
+            <option value="SIC">SIC</option>
+            <option value="TAGX">TAGX</option>
+        </select></label>
+        <label>Tulos <input type="text" id="input-m1-score" value="0–2" placeholder="0–0" maxlength="5" /></label>
+    </fieldset>
+
+    <fieldset class="match-control" id="match-control-2">
+        <legend>Ottelu 2</legend>
+        <label>Koti <select id="input-m2-left" data-match="2" data-side="left">
+            <option value="B5">B5</option>
+            <option value="BW">BW</option>
+            <option value="EA" selected>EA</option>
+            <option value="ETM">ETM</option>
+            <option value="FRM">FRM</option>
+            <option value="LAR">LAR</option>
+            <option value="MF">MF</option>
+            <option value="RGF">RGF</option>
+            <option value="SIC">SIC</option>
+            <option value="TAGX">TAGX</option>
+        </select></label>
+        <label>Vieras <select id="input-m2-right" data-match="2" data-side="right">
+            <option value="B5">B5</option>
+            <option value="BW">BW</option>
+            <option value="EA">EA</option>
+            <option value="ETM">ETM</option>
+            <option value="FRM" selected>FRM</option>
+            <option value="LAR">LAR</option>
+            <option value="MF">MF</option>
+            <option value="RGF">RGF</option>
+            <option value="SIC">SIC</option>
+            <option value="TAGX">TAGX</option>
+        </select></label>
+        <label>Tulos <input type="text" id="input-m2-score" value="2–0" placeholder="0–0" maxlength="5" /></label>
+    </fieldset>
+
+    <fieldset class="match-control" id="match-control-3">
+        <legend>Ottelu 3</legend>
+        <label>Koti <select id="input-m3-left" data-match="3" data-side="left">
+            <option value="B5" selected>B5</option>
+            <option value="BW">BW</option>
+            <option value="EA">EA</option>
+            <option value="ETM">ETM</option>
+            <option value="FRM">FRM</option>
+            <option value="LAR">LAR</option>
+            <option value="MF">MF</option>
+            <option value="RGF">RGF</option>
+            <option value="SIC">SIC</option>
+            <option value="TAGX">TAGX</option>
+        </select></label>
+        <label>Vieras <select id="input-m3-right" data-match="3" data-side="right">
+            <option value="B5">B5</option>
+            <option value="BW">BW</option>
+            <option value="EA">EA</option>
+            <option value="ETM">ETM</option>
+            <option value="FRM">FRM</option>
+            <option value="LAR">LAR</option>
+            <option value="MF">MF</option>
+            <option value="RGF">RGF</option>
+            <option value="SIC">SIC</option>
+            <option value="TAGX" selected>TAGX</option>
+        </select></label>
+        <label>Tulos <input type="text" id="input-m3-score" value="2–0" placeholder="0–0" maxlength="5" /></label>
+    </fieldset>
+
+    <button type="button" class="download-btn" id="download-btn">Lataa kuva (PNG)</button>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
+<script src="app.js?v=2"></script>
+</body>
+</html>
