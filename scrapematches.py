@@ -1,3 +1,6 @@
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -11,6 +14,59 @@ import time
 
 # Team code alias from external source to our code (if needed)
 TEAM_ALIAS = {}
+
+# Scraped times are in the runner's local TZ (site shows local time). Store always in Finnish time.
+FIN_TZ = ZoneInfo("Europe/Helsinki")
+MONTHS_UP = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"]
+
+
+def _is_finnish_timezone():
+    """True if the current process is running in Europe/Helsinki (same UTC offset as Finland)."""
+    try:
+        now_utc = datetime.now(ZoneInfo("UTC"))
+        local_tz = datetime.now().astimezone().tzinfo
+        if local_tz is None:
+            return False
+        local_offset = now_utc.astimezone(local_tz).utcoffset()
+        fin_offset = now_utc.astimezone(FIN_TZ).utcoffset()
+        return local_offset == fin_offset
+    except Exception:
+        return False
+
+
+def _convert_to_finnish_time(date_text, time_val, from_tz):
+    """Parse Date + Time in from_tz, return (date_str, time_str) in Europe/Helsinki."""
+    try:
+        parts = date_text.strip().split()
+        if len(parts) != 3:
+            return date_text, time_val
+        day = int(parts[0])
+        month_name = parts[1].upper()
+        year = int(parts[2])
+        month = next((i for i, m in enumerate(MONTHS_UP, 1) if m == month_name), None)
+        if not month:
+            return date_text, time_val
+        t_parts = time_val.strip().split(":")
+        hour = int(t_parts[0]) if t_parts else 0
+        minute = int(t_parts[1]) if len(t_parts) > 1 else 0
+        dt_src = datetime(year, month, day, hour, minute, 0, tzinfo=from_tz)
+        dt_fin = dt_src.astimezone(FIN_TZ)
+        date_fin = f"{dt_fin.day} {MONTHS_UP[dt_fin.month - 1]} {dt_fin.year}"
+        time_fin = dt_fin.strftime("%H:%M")
+        return date_fin, time_fin
+    except Exception:
+        return date_text, time_val
+
+
+def to_finnish_time_if_needed(date_text, time_val):
+    """If we're not in Finnish TZ, convert scraped (local) time to Finnish; otherwise leave as-is."""
+    if _is_finnish_timezone():
+        return date_text, time_val
+    # Scraper runs in UTC (e.g. GitHub) or other TZ – treat scraped as that TZ and convert to Finnish
+    from_tz = datetime.now().astimezone().tzinfo
+    if from_tz is None:
+        from_tz = ZoneInfo("UTC")
+    return _convert_to_finnish_time(date_text, time_val, from_tz)
 
 
 def normalize_team(t):
@@ -162,6 +218,13 @@ def scrape_leagues_gg(url):
         # 3) Scrape result cards (with score)
         print("Scraping results…")
         results_with_score = parse_cards(require_score=True)
+
+        # If scraper runs outside Finnish TZ (e.g. GitHub UTC), convert times to Finnish; if already in Finland, leave as-is
+        def normalize_tz(match_list):
+            for m in match_list:
+                m["Date"], m["Time"] = to_finnish_time_if_needed(m["Date"], m["Time"])
+        normalize_tz(results_with_score)
+        normalize_tz(upcoming)
 
         return {
             "results": results_with_score,
