@@ -59,6 +59,7 @@ body {
 /* FPL Logo */
 .fpl-logo {
     position: relative;
+    padding-top: 10px;
     width: 140px;
     left: 50%;
     transform: translateX(-50%);
