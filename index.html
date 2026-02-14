@@ -41,6 +41,14 @@
     <div class="score score-text match3-score" id="m3-score">2–0</div>
     <div class="team-name team-name-text match3-right-name" id="m3-name-right">TAGX</div>
     <img src="Layers/TAGX 150.png" class="team match3-right" id="m3-logo-right" alt="" />
+
+    <!-- MATCH 4 -->
+    <img src="Layers/Rectangle 1 4.png" class="match match4-bg" />
+    <img src="Layers/ETM 150.png" class="team match4-left" id="m4-logo-left" alt="" />
+    <div class="team-name team-name-text match4-left-name" id="m4-name-left">ETM</div>
+    <div class="score score-text match4-score" id="m4-score">0–0</div>
+    <div class="team-name team-name-text match4-right-name" id="m4-name-right">LAR</div>
+    <img src="Layers/LAR 150.png" class="team match4-right" id="m4-logo-right" alt="" />
 </div>
 </div>
 
@@ -65,6 +73,11 @@
             <option value="ottelut">Ottelut</option>
         </select></label>
         <label class="day-select-label">Päivä <select id="input-day" class="day-select" disabled><option value="">– Valitse päivä –</option></select></label>
+    </fieldset>
+    <fieldset class="match-control" id="finalysti-control">
+        <legend>Finalysti Studio</legend>
+        <label><input type="checkbox" id="input-finalysti-enabled" /> Näytä Finalysti Studio -boksi (työntää ottelut yhden alas)</label>
+        <label>Aika <input type="text" id="input-finalysti-time" value="17:00" placeholder="17:00" maxlength="5" /></label>
     </fieldset>
     <fieldset class="match-control" id="match-control-1">
         <legend>Ottelu 1</legend>
@@ -151,6 +164,34 @@
             <option value="TAGX" selected>TAGX</option>
         </select></label>
         <label>Tulos <input type="text" id="input-m3-score" value="2–0" placeholder="0–0" maxlength="5" /></label>
+    </fieldset>
+    <fieldset class="match-control" id="match-control-4">
+        <legend>Ottelu 4</legend>
+        <label>Koti <select id="input-m4-left" data-match="4" data-side="left">
+            <option value="B5">B5</option>
+            <option value="BW">BW</option>
+            <option value="EA">EA</option>
+            <option value="ETM" selected>ETM</option>
+            <option value="FRM">FRM</option>
+            <option value="LAR">LAR</option>
+            <option value="MF">MF</option>
+            <option value="RGF">RGF</option>
+            <option value="SIC">SIC</option>
+            <option value="TAGX">TAGX</option>
+        </select></label>
+        <label>Vieras <select id="input-m4-right" data-match="4" data-side="right">
+            <option value="B5">B5</option>
+            <option value="BW">BW</option>
+            <option value="EA">EA</option>
+            <option value="ETM">ETM</option>
+            <option value="FRM">FRM</option>
+            <option value="LAR" selected>LAR</option>
+            <option value="MF">MF</option>
+            <option value="RGF">RGF</option>
+            <option value="SIC">SIC</option>
+            <option value="TAGX">TAGX</option>
+        </select></label>
+        <label>Tulos <input type="text" id="input-m4-score" value="0–0" placeholder="0–0" maxlength="5" /></label>
     </fieldset>
 
     <button type="button" class="download-btn" id="download-btn">Lataa kuva (PNG)</button>

@@ -86,8 +86,51 @@
         if (input && el) el.textContent = (input.value.trim() || 'PELIEN VODIT YOUTUBESSA @FINNHOUSELOL');
     }
 
-    function updateMatch(matchNum) {
+    /** "Best of 3" -> "BO3", "Best of 5" -> "BO5" */
+    function formatBestOf(s) {
+        if (!s || typeof s !== 'string') return '';
+        var m = s.trim().match(/Best\s+of\s+(\d+)/i);
+        return m ? 'BO' + m[1] : s;
+    }
+
+    function isFinalystiEnabled() {
+        var el = document.getElementById('input-finalysti-enabled');
+        return el ? el.checked : false;
+    }
+
+    /** Finalysti Studio row is only shown for upcoming (ottelut), not for results (tulokset). */
+    function isFinalystiActive() {
+        return isFinalystiEnabled() && currentMode === 'ottelut';
+    }
+
+    function getFinalystiTime() {
+        var el = document.getElementById('input-finalysti-time');
+        return (el && el.value ? el.value.trim() : '17:00') || '17:00';
+    }
+
+    function setRow1TeamsVisible(visible) {
+        var display = visible ? '' : 'none';
+        ['m1-logo-left', 'm1-logo-right', 'm1-name-left', 'm1-name-right'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = display;
+        });
+    }
+
+    function updateFinalystiRow() {
+        var scoreEl = document.getElementById('m1-score');
+        if (!scoreEl) return;
+        scoreEl.classList.add('score-finalysti-row');
+        var mainText = 'FINALYSTI STUDIO';
+        var timeText = getFinalystiTime().replace(/-/g, '–');
+        scoreEl.innerHTML = '<span class="score-main">' + escapeHtml(mainText) + '</span><span class="score-bestof">' + escapeHtml(timeText) + '</span>';
+    }
+
+    function updateMatch(matchNum, optionalMatch) {
         const m = matchNum;
+        if (m === 1 && isFinalystiActive()) {
+            updateFinalystiRow();
+            return;
+        }
         const leftVal = document.getElementById(`input-m${m}-left`).value;
         const rightVal = document.getElementById(`input-m${m}-right`).value;
         const scoreVal = document.getElementById(`input-m${m}-score`).value.trim() || '0–0';
@@ -104,43 +147,63 @@
         document.getElementById(`m${m}-name-right`).textContent = rightVal;
 
         const scoreEl = document.getElementById(`m${m}-score`);
-        scoreEl.textContent = scoreVal.replace(/-/g, '–');
+        if (m === 1) scoreEl.classList.remove('score-finalysti-row');
+        const mainText = scoreVal.replace(/-/g, '–');
+        var showBestOf = arguments[2] === true;
+        if (showBestOf && optionalMatch && optionalMatch.BestOf) {
+            var bo3Text = formatBestOf(optionalMatch.BestOf);
+            scoreEl.innerHTML = '<span class="score-main">' + escapeHtml(mainText) + '</span><span class="score-bestof">' + escapeHtml(bo3Text) + '</span>';
+        } else {
+            scoreEl.textContent = mainText;
+        }
     }
 
-    /** Show only the first `count` match rows (1–3). Hides the rest in canvas and side panel. */
+    /** Show only the first `count` match rows (1–4). When Finalysti box is on (upcoming only), row 1 is Finalysti and match rows are 2,3,4 (max 3). */
     function setMatchRowsVisible(count) {
         currentMatchCount = count;
+        var finalysti = isFinalystiActive();
         var canvas = document.querySelector('.canvas');
         if (canvas) {
             var rowSelectors = [
                 '.match1-bg, .match1-left, .match1-right, .match1-left-name, .match1-right-name, .match1-score',
                 '.match2-bg, .match2-left, .match2-right, .match2-left-name, .match2-right-name, .match2-score',
-                '.match3-bg, .match3-left, .match3-right, .match3-left-name, .match3-right-name, .match3-score'
+                '.match3-bg, .match3-left, .match3-right, .match3-left-name, .match3-right-name, .match3-score',
+                '.match4-bg, .match4-left, .match4-right, .match4-left-name, .match4-right-name, .match4-score'
             ];
-            for (var i = 0; i < 3; i++) {
-                var show = i < count;
+            for (var i = 0; i < 4; i++) {
+                var show = finalysti
+                    ? (i === 0 || i <= count)
+                    : (i < count);
                 var display = show ? '' : 'none';
                 rowSelectors[i].split(', ').forEach(function (sel) {
                     var el = canvas.querySelector(sel);
                     if (el) el.style.display = display;
                 });
             }
+            if (finalysti) {
+                setRow1TeamsVisible(false);
+            }
         }
-        for (var i = 1; i <= 3; i++) {
+        var fs1 = document.getElementById('match-control-1');
+        if (fs1) fs1.style.display = finalysti ? 'none' : (1 <= count ? '' : 'none');
+        for (var i = 2; i <= 4; i++) {
             var fieldset = document.getElementById('match-control-' + i);
-            if (fieldset) fieldset.style.display = i <= count ? '' : 'none';
+            if (fieldset) fieldset.style.display = (finalysti ? i <= count + 1 : i <= count) ? '' : 'none';
         }
     }
 
-    function applyMatchesToList(matches, title, getCenterValue) {
+    function applyMatchesToList(matches, title, getCenterValue, showBestOf) {
         var titleInput = document.getElementById('input-main-title');
         if (titleInput) titleInput.value = title;
         updateTitle();
-        var matchCount = Math.min(3, matches.length);
+        var finalysti = isFinalystiActive();
+        var matchCount = finalysti ? Math.min(3, matches.length) : Math.min(4, matches.length);
+        var startSlot = finalysti ? 2 : 1;
         for (var i = 0; i < matchCount; i++) {
-            var leftSel = document.getElementById('input-m' + (i + 1) + '-left');
-            var rightSel = document.getElementById('input-m' + (i + 1) + '-right');
-            var centerInput = document.getElementById('input-m' + (i + 1) + '-score');
+            var slot = startSlot + i;
+            var leftSel = document.getElementById('input-m' + slot + '-left');
+            var rightSel = document.getElementById('input-m' + slot + '-right');
+            var centerInput = document.getElementById('input-m' + slot + '-score');
             if (!leftSel || !rightSel || !centerInput) continue;
             var m = matches[i];
             if (!m) continue;
@@ -148,7 +211,15 @@
             leftSel.value = TEAMS.indexOf(teams.left) >= 0 ? teams.left : teams.left;
             rightSel.value = TEAMS.indexOf(teams.right) >= 0 ? teams.right : teams.right;
             centerInput.value = getCenterValue(m);
-            updateMatch(i + 1);
+            updateMatch(slot, m, showBestOf);
+        }
+        if (finalysti) {
+            updateFinalystiRow();
+            setRow1TeamsVisible(false);
+        } else {
+            setRow1TeamsVisible(true);
+            var m1Score = document.getElementById('m1-score');
+            if (m1Score) m1Score.classList.remove('score-finalysti-row');
         }
         setMatchRowsVisible(matchCount);
     }
@@ -205,7 +276,7 @@
         var dayName = getDayNameGenitiveForDate(dateStr);
         var suffix = currentMode === 'tulokset' ? (forDay.length === 1 ? ' tulos' : ' tulokset') : (forDay.length === 1 ? ' ottelu' : ' ottelut');
         var title = dayName + suffix;
-        applyMatchesToList(forDay, title, getCenterValueFn);
+        applyMatchesToList(forDay, title, getCenterValueFn, currentMode === 'ottelut');
     }
 
     function loadAndApplyResults() {
@@ -262,6 +333,54 @@
             });
     }
 
+    function copySlotToSlot(fromSlot, toSlot) {
+        var leftFrom = document.getElementById('input-m' + fromSlot + '-left');
+        var rightFrom = document.getElementById('input-m' + fromSlot + '-right');
+        var scoreFrom = document.getElementById('input-m' + fromSlot + '-score');
+        var leftTo = document.getElementById('input-m' + toSlot + '-left');
+        var rightTo = document.getElementById('input-m' + toSlot + '-right');
+        var scoreTo = document.getElementById('input-m' + toSlot + '-score');
+        if (leftFrom && leftTo) leftTo.value = leftFrom.value;
+        if (rightFrom && rightTo) rightTo.value = rightFrom.value;
+        if (scoreFrom && scoreTo) scoreTo.value = scoreFrom.value;
+    }
+
+    function onFinalystiToggle() {
+        if (currentMode !== 'ottelut') {
+            setRow1TeamsVisible(true);
+            var m1Score = document.getElementById('m1-score');
+            if (m1Score) m1Score.classList.remove('score-finalysti-row');
+            setMatchRowsVisible(currentMatchCount);
+            [1, 2, 3, 4].forEach(updateMatch);
+            return;
+        }
+        if (isFinalystiEnabled()) {
+            copySlotToSlot(3, 4);
+            copySlotToSlot(2, 3);
+            copySlotToSlot(1, 2);
+            document.getElementById('input-m1-left').value = TEAMS[0];
+            document.getElementById('input-m1-right').value = TEAMS[1];
+            document.getElementById('input-m1-score').value = '0–0';
+            updateFinalystiRow();
+            setRow1TeamsVisible(false);
+            setMatchRowsVisible(3);
+            [2, 3, 4].forEach(updateMatch);
+        } else {
+            setRow1TeamsVisible(true);
+            copySlotToSlot(2, 1);
+            copySlotToSlot(3, 2);
+            copySlotToSlot(4, 3);
+            var m4Left = document.getElementById('input-m4-left');
+            var m4Right = document.getElementById('input-m4-right');
+            var m4Score = document.getElementById('input-m4-score');
+            if (m4Left) m4Left.value = TEAMS[0];
+            if (m4Right) m4Right.value = TEAMS[1];
+            if (m4Score) m4Score.value = '0–0';
+            setMatchRowsVisible(3);
+            [1, 2, 3].forEach(updateMatch);
+        }
+    }
+
     function setupListeners() {
         var titleInput = document.getElementById('input-main-title');
         if (titleInput) {
@@ -275,7 +394,14 @@
         }
         var daySel = document.getElementById('input-day');
         if (daySel) daySel.addEventListener('change', function () { applyDay(daySel.value); });
-        [1, 2, 3].forEach(function (m) {
+        var finalystiCheck = document.getElementById('input-finalysti-enabled');
+        if (finalystiCheck) finalystiCheck.addEventListener('change', onFinalystiToggle);
+        var finalystiTime = document.getElementById('input-finalysti-time');
+        if (finalystiTime) {
+            finalystiTime.addEventListener('input', function () { if (isFinalystiEnabled()) updateFinalystiRow(); });
+            finalystiTime.addEventListener('change', function () { if (isFinalystiEnabled()) updateFinalystiRow(); });
+        }
+        [1, 2, 3, 4].forEach(function (m) {
             ['left', 'right'].forEach(function (side) {
                 const sel = document.getElementById(`input-m${m}-${side}`);
                 if (sel) sel.addEventListener('change', function () { updateMatch(m); });
@@ -378,7 +504,12 @@
         if (titleInput) titleInput.value = getDayNameGenitive() + ' tulokset';
         updateTitle();
         updateSubtitle();
-        [1, 2, 3].forEach(updateMatch);
+        setMatchRowsVisible(3);
+        [1, 2, 3, 4].forEach(updateMatch);
+        if (isFinalystiEnabled()) {
+            setRow1TeamsVisible(false);
+            updateFinalystiRow();
+        }
         updateCanvasScale();
         window.addEventListener('resize', updateCanvasScale);
         setupListeners();

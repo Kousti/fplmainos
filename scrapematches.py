@@ -146,6 +146,23 @@ def scrape_leagues_gg(url):
                 if not require_score and score_text:
                     continue
 
+                # Best of X: look for "Best of 3" etc. in the card footer (right-aligned <p>)
+                best_of = None
+                try:
+                    footer_ps = card.find_elements(
+                        By.XPATH,
+                        ".//div[contains(@class, 'backdrop-brightness-70')]//p[contains(@class, 'text-right')]",
+                    )
+                    bo_re = re.compile(r"Best\s+of\s+(\d+)", re.I)
+                    for p in footer_ps:
+                        raw = p.text.strip()
+                        mo = bo_re.search(raw)
+                        if mo:
+                            best_of = "Best of " + mo.group(1)
+                            break
+                except Exception:
+                    pass
+
                 match_id = f"{date_text}-{time_val}-{t1}-{t2}"
                 if match_id in seen:
                     continue
@@ -153,18 +170,24 @@ def scrape_leagues_gg(url):
 
                 if score_text:
                     score_clean = re.sub(r"\s*-\s*", " – ", score_text.strip())
-                    out.append({
+                    item = {
                         "Date": date_text,
                         "Time": time_val,
                         "Match": f"{t1} vs {t2}",
                         "Score": score_clean,
-                    })
+                    }
+                    if best_of:
+                        item["BestOf"] = best_of
+                    out.append(item)
                 else:
-                    out.append({
+                    item = {
                         "Date": date_text,
                         "Time": time_val,
                         "Match": f"{t1} vs {t2}",
-                    })
+                    }
+                    if best_of:
+                        item["BestOf"] = best_of
+                    out.append(item)
             except Exception:
                 continue
         return out

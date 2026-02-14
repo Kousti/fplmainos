@@ -136,8 +136,9 @@ body {
 }
 
 .match1-bg { top: 44.44%; } /* 600/1350 */
-.match2-bg { top: 58.52%; } /* 790/1350 */
-.match3-bg { top: 72.59%; } /* 980/1350 */
+.match2-bg { top: 57.94%; }
+.match3-bg { top: 71.44%; }
+.match4-bg { top: 84.94%; }
 
 /* Teams - above match backgrounds */
 .team {
@@ -153,11 +154,14 @@ body {
 .match1-left { top: 45.56%; left: 160px; }
 .match1-right { top: 45.56%; right: 160px; }
 
-.match2-left { top: 59.63%; left: 160px; }
-.match2-right { top: 59.63%; right: 160px; }
+.match2-left { top: 59.06%; left: 160px; }
+.match2-right { top: 59.06%; right: 160px; }
 
-.match3-left { top: 73.70%; left: 160px; }
-.match3-right { top: 73.70%; right: 160px; }
+.match3-left { top: 72.56%; left: 160px; }
+.match3-right { top: 72.56%; right: 160px; }
+
+.match4-left { top: 86.06%; left: 160px; }
+.match4-right { top: 86.06%; right: 160px; }
 
 /* Team names - next to logos, same size as logo */
 .team-name {
@@ -183,13 +187,15 @@ body {
 
 /* Left side: logo then name → name is to the right of logo */
 .match1-left-name { top: 46.07%; left: 310px; }
-.match2-left-name { top: 60.15%; left: 310px; }
-.match3-left-name { top: 74.22%; left: 310px; }
+.match2-left-name { top: 59.57%; left: 310px; }
+.match3-left-name { top: 73.07%; left: 310px; }
+.match4-left-name { top: 86.57%; left: 310px; }
 
 /* Right side: name then logo → name is to the left of logo */
 .match1-right-name { top: 46.07%; right: 310px; }
-.match2-right-name { top: 60.15%; right: 310px; }
-.match3-right-name { top: 74.22%; right: 310px; }
+.match2-right-name { top: 59.57%; right: 310px; }
+.match3-right-name { top: 73.07%; right: 310px; }
+.match4-right-name { top: 86.57%; right: 310px; }
 
 /* Scores - above match backgrounds, centered in row */
 .score {
@@ -203,12 +209,14 @@ body {
 }
 
 .match1-score { top: 51.11%; }
-.match2-score { top: 65.19%; }
-.match3-score { top: 79.26%; }
+.match2-score { top: 64.61%; }
+.match3-score { top: 78.11%; }
+.match4-score { top: 91.61%; }
 
 /* Score as text – project font */
 .score-text {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: 'MorganiteExtraBold', 'MorganiteBlack', sans-serif;
@@ -217,6 +225,29 @@ body {
     color: #fff;
     text-align: center;
     pointer-events: none;
+}
+
+.score-main {
+    display: block;
+    background: linear-gradient(to bottom right, #1ec7fa, #0164fa 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.score-finalysti-row .score-main {
+    white-space: nowrap;
+    font-size: 1.15em;
+}
+
+.score-bestof {
+    display: block;
+    font-family: 'JetBrains', monospace;
+    font-size: 0.3em;
+    font-weight: 600;
+    line-height: 1.3;
+    opacity: 0.9;
 }
 
 /* Control panel – stays beside or below canvas, never overlapped */

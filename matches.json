@@ -4,113 +4,139 @@
       "Date": "12 FEBRUARY 2026",
       "Time": "22:00",
       "Match": "RGF vs B5",
-      "Score": "2 – 1"
+      "Score": "2 – 1",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "12 FEBRUARY 2026",
       "Time": "20:00",
       "Match": "FRM vs BW",
-      "Score": "0 – 2"
+      "Score": "0 – 2",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "10 FEBRUARY 2026",
       "Time": "19:00",
       "Match": "LAR vs MF",
-      "Score": "2 – 0"
+      "Score": "2 – 0",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "9 FEBRUARY 2026",
       "Time": "20:00",
       "Match": "MF vs SIC",
-      "Score": "2 – 0"
+      "Score": "2 – 0",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "8 FEBRUARY 2026",
       "Time": "20:00",
       "Match": "RGF vs EA",
-      "Score": "2 – 1"
+      "Score": "2 – 1",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "8 FEBRUARY 2026",
       "Time": "19:00",
       "Match": "TAGX vs FRM",
-      "Score": "1 – 2"
+      "Score": "1 – 2",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "8 FEBRUARY 2026",
       "Time": "18:00",
       "Match": "ETM vs BW",
-      "Score": "0 – 2"
+      "Score": "0 – 2",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "8 FEBRUARY 2026",
       "Time": "17:00",
       "Match": "B5 vs LAR",
-      "Score": "2 – 0"
+      "Score": "2 – 0",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "5 FEBRUARY 2026",
       "Time": "20:00",
       "Match": "LAR vs TAGX",
-      "Score": "1 – 2"
+      "Score": "1 – 2",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "5 FEBRUARY 2026",
       "Time": "19:00",
       "Match": "EA vs ETM",
-      "Score": "2 – 0"
+      "Score": "2 – 0",
+      "BestOf": "Best of 3"
     }
   ],
   "upcoming": [
     {
       "Date": "15 FEBRUARY 2026",
       "Time": "18:00",
-      "Match": "ETM vs TAGX"
+      "Match": "ETM vs TAGX",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "15 FEBRUARY 2026",
       "Time": "19:00",
-      "Match": "LAR vs SIC"
+      "Match": "LAR vs SIC",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "15 FEBRUARY 2026",
       "Time": "20:00",
-      "Match": "BW vs EA"
+      "Match": "BW vs EA",
+      "BestOf": "Best of 3"
+    },
+    {
+      "Date": "15 FEBRUARY 2026",
+      "Time": "22:00",
+      "Match": "EA vs FRM",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "18 FEBRUARY 2026",
       "Time": "18:00",
-      "Match": "BW vs TAGX"
+      "Match": "BW vs TAGX",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "19 FEBRUARY 2026",
       "Time": "20:00",
-      "Match": "RGF vs SIC"
+      "Match": "RGF vs SIC",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "19 FEBRUARY 2026",
       "Time": "20:00",
-      "Match": "FRM vs B5"
+      "Match": "FRM vs B5",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "22 FEBRUARY 2026",
       "Time": "18:00",
-      "Match": "EA vs LAR"
+      "Match": "EA vs LAR",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "22 FEBRUARY 2026",
       "Time": "20:00",
-      "Match": "MF vs FRM"
+      "Match": "MF vs FRM",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "25 FEBRUARY 2026",
       "Time": "19:00",
-      "Match": "MF vs ETM"
+      "Match": "MF vs ETM",
+      "BestOf": "Best of 3"
     },
     {
       "Date": "26 FEBRUARY 2026",
       "Time": "18:00",
-      "Match": "B5 vs MF"
+      "Match": "B5 vs MF",
+      "BestOf": "Best of 3"
     }
   ]
 }
