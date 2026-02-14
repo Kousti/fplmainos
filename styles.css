@@ -35,7 +35,6 @@ body {
     overflow: hidden;
 }
 /* Canvas is absolute so the wrap can be the scaled size without clipping the scaled canvas */
-/* Fixed font-size so em (title 17em, etc.) is identical on all devices – no laptop vs PC gap difference */
 .canvas {
     position: absolute;
     top: 0;
@@ -86,7 +85,7 @@ body {
 .main-title-text {
     display: block;
     font-family: 'MorganiteBlack', sans-serif;
-    font-size: 17em;
+    font-size: 272px;
     font-weight: 800;
     letter-spacing: 0.02em;
     background: linear-gradient(to bottom right, #1ec7fa, #0164fa 80%);
@@ -115,7 +114,7 @@ body {
 .subtitle-text {
     display: block;
     font-family: 'JetBrains', monospace;
-    font-size: 1.5em;
+    font-size: 24px;
     font-weight: 700;
     color: #fff;
     text-align: center;
@@ -174,7 +173,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'MorganiteExtraBold', 'MorganiteBlack', sans-serif;
-    font-size: 6em;
+    font-size: 96px;
     font-weight: 800;
     color: #fff;
     text-align: center;
@@ -213,7 +212,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'MorganiteExtraBold', 'MorganiteBlack', sans-serif;
-    font-size: 6em;
+    font-size: 96px;
     font-weight: 800;
     color: #fff;
     text-align: center;
