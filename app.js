@@ -150,7 +150,19 @@
         if (m === 1) scoreEl.classList.remove('score-finalysti-row');
         const mainText = scoreVal.replace(/-/g, '–');
         var showBestOf = arguments[2] === true;
-        if (showBestOf && optionalMatch && optionalMatch.BestOf) {
+        var isUpcoming = currentMode === 'ottelut';
+        if (isUpcoming) {
+            var bo3Text = (optionalMatch && optionalMatch.BestOf) ? formatBestOf(optionalMatch.BestOf) : '';
+            if (!bo3Text && scoreEl) {
+                var existingBestOf = scoreEl.querySelector('.score-bestof');
+                if (existingBestOf && existingBestOf.textContent) bo3Text = existingBestOf.textContent.trim();
+            }
+            if (bo3Text) {
+                scoreEl.innerHTML = '<span class="score-main">' + escapeHtml(mainText) + '</span><span class="score-bestof">' + escapeHtml(bo3Text) + '</span>';
+            } else {
+                scoreEl.innerHTML = '<span class="score-main">' + escapeHtml(mainText) + '</span>';
+            }
+        } else if (showBestOf && optionalMatch && optionalMatch.BestOf) {
             var bo3Text = formatBestOf(optionalMatch.BestOf);
             scoreEl.innerHTML = '<span class="score-main">' + escapeHtml(mainText) + '</span><span class="score-bestof">' + escapeHtml(bo3Text) + '</span>';
         } else {
@@ -182,6 +194,7 @@
             }
             if (finalysti) {
                 setRow1TeamsVisible(false);
+                updateFinalystiRow();
             }
         }
         var fs1 = document.getElementById('match-control-1');
