@@ -363,7 +363,7 @@
             document.getElementById('input-m1-score').value = '0–0';
             updateFinalystiRow();
             setRow1TeamsVisible(false);
-            setMatchRowsVisible(3);
+            setMatchRowsVisible(Math.min(3, currentMatchCount));
             [2, 3, 4].forEach(updateMatch);
         } else {
             setRow1TeamsVisible(true);
@@ -376,7 +376,7 @@
             if (m4Left) m4Left.value = TEAMS[0];
             if (m4Right) m4Right.value = TEAMS[1];
             if (m4Score) m4Score.value = '0–0';
-            setMatchRowsVisible(3);
+            setMatchRowsVisible(currentMatchCount);
             [1, 2, 3].forEach(updateMatch);
         }
     }
