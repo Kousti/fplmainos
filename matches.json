@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "Date": "19 FEBRUARY 2026",
-      "Time": "20:00",
-      "Match": "RGF vs SIC",
+      "Date": "22 FEBRUARY 2026",
+      "Time": "18:00",
+      "Match": "EA vs LAR",
       "Score": "2 – 0",
       "BestOf": "Best of 3"
     },
@@ -12,6 +12,13 @@
       "Time": "20:00",
       "Match": "FRM vs B5",
       "Score": "2 – 1",
+      "BestOf": "Best of 3"
+    },
+    {
+      "Date": "19 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "RGF vs SIC",
+      "Score": "2 – 0",
       "BestOf": "Best of 3"
     },
     {
@@ -62,22 +69,9 @@
       "Match": "LAR vs MF",
       "Score": "2 – 0",
       "BestOf": "Best of 3"
-    },
-    {
-      "Date": "9 FEBRUARY 2026",
-      "Time": "20:00",
-      "Match": "MF vs SIC",
-      "Score": "2 – 0",
-      "BestOf": "Best of 3"
     }
   ],
   "upcoming": [
-    {
-      "Date": "22 FEBRUARY 2026",
-      "Time": "18:00",
-      "Match": "EA vs LAR",
-      "BestOf": "Best of 3"
-    },
     {
       "Date": "22 FEBRUARY 2026",
       "Time": "20:00",
