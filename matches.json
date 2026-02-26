@@ -2,6 +2,13 @@
   "results": [
     {
       "Date": "26 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "B5 vs MF",
+      "Score": "2 – 0",
+      "BestOf": "Best of 3"
+    },
+    {
+      "Date": "26 FEBRUARY 2026",
       "Time": "18:00",
       "Match": "LAR vs RGF",
       "Score": "1 – 2",
@@ -62,13 +69,6 @@
       "Match": "LAR vs SIC",
       "Score": "2 – 1",
       "BestOf": "Best of 3"
-    },
-    {
-      "Date": "15 FEBRUARY 2026",
-      "Time": "18:00",
-      "Match": "ETM vs TAGX",
-      "Score": "2 – 1",
-      "BestOf": "Best of 3"
     }
   ],
   "upcoming": [
@@ -76,12 +76,6 @@
       "Date": "26 FEBRUARY 2026",
       "Time": "20:00",
       "Match": "SIC vs ETM",
-      "BestOf": "Best of 3"
-    },
-    {
-      "Date": "26 FEBRUARY 2026",
-      "Time": "20:00",
-      "Match": "B5 vs MF",
       "BestOf": "Best of 3"
     },
     {
