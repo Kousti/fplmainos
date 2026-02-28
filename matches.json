@@ -1,6 +1,13 @@
 {
   "results": [
     {
+      "Date": "28 FEBRUARY 2026",
+      "Time": "20:00",
+      "Match": "FRM vs ETM",
+      "Score": "1 – 2",
+      "BestOf": "Best of 3"
+    },
+    {
       "Date": "26 FEBRUARY 2026",
       "Time": "20:00",
       "Match": "SIC vs ETM",
@@ -62,22 +69,9 @@
       "Match": "BW vs TAGX",
       "Score": "2 – 0",
       "BestOf": "Best of 3"
-    },
-    {
-      "Date": "15 FEBRUARY 2026",
-      "Time": "20:00",
-      "Match": "BW vs EA",
-      "Score": "2 – 0",
-      "BestOf": "Best of 3"
     }
   ],
   "upcoming": [
-    {
-      "Date": "28 FEBRUARY 2026",
-      "Time": "20:00",
-      "Match": "FRM vs ETM",
-      "BestOf": "Best of 3"
-    },
     {
       "Date": "1 MARCH 2026",
       "Time": "18:00",
