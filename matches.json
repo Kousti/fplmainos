@@ -2,6 +2,20 @@
   "results": [
     {
       "Date": "1 MARCH 2026",
+      "Time": "20:00",
+      "Match": "TAGX vs RGF",
+      "Score": "1 – 2",
+      "BestOf": "Best of 3"
+    },
+    {
+      "Date": "1 MARCH 2026",
+      "Time": "19:00",
+      "Match": "BW vs B5",
+      "Score": "2 – 1",
+      "BestOf": "Best of 3"
+    },
+    {
+      "Date": "1 MARCH 2026",
       "Time": "18:00",
       "Match": "SIC vs EA",
       "Score": "0 – 2",
@@ -17,15 +31,15 @@
     {
       "Date": "26 FEBRUARY 2026",
       "Time": "20:00",
-      "Match": "SIC vs ETM",
-      "Score": "0 – 2",
+      "Match": "B5 vs MF",
+      "Score": "2 – 0",
       "BestOf": "Best of 3"
     },
     {
       "Date": "26 FEBRUARY 2026",
       "Time": "20:00",
-      "Match": "B5 vs MF",
-      "Score": "2 – 0",
+      "Match": "SIC vs ETM",
+      "Score": "0 – 2",
       "BestOf": "Best of 3"
     },
     {
@@ -55,34 +69,7 @@
       "Match": "EA vs LAR",
       "Score": "2 – 0",
       "BestOf": "Best of 3"
-    },
-    {
-      "Date": "19 FEBRUARY 2026",
-      "Time": "20:00",
-      "Match": "FRM vs B5",
-      "Score": "2 – 1",
-      "BestOf": "Best of 3"
-    },
-    {
-      "Date": "19 FEBRUARY 2026",
-      "Time": "20:00",
-      "Match": "RGF vs SIC",
-      "Score": "2 – 0",
-      "BestOf": "Best of 3"
     }
   ],
-  "upcoming": [
-    {
-      "Date": "1 MARCH 2026",
-      "Time": "19:00",
-      "Match": "BW vs B5",
-      "BestOf": "Best of 3"
-    },
-    {
-      "Date": "1 MARCH 2026",
-      "Time": "20:00",
-      "Match": "TAGX vs RGF",
-      "BestOf": "Best of 3"
-    }
-  ]
+  "upcoming": []
 }
