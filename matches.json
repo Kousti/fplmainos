@@ -1,6 +1,13 @@
 {
   "results": [
     {
+      "Date": "19 MARCH 2026",
+      "Time": "18:00",
+      "Match": "B5 vs EA",
+      "Score": "1 – 3",
+      "BestOf": "Best of 5"
+    },
+    {
       "Date": "15 MARCH 2026",
       "Time": "18:00",
       "Match": "RGF vs FRM",
@@ -30,12 +37,6 @@
     }
   ],
   "upcoming": [
-    {
-      "Date": "19 MARCH 2026",
-      "Time": "18:00",
-      "Match": "B5 vs EA",
-      "BestOf": "Best of 5"
-    },
     {
       "Date": "22 MARCH 2026",
       "Time": "18:00",
