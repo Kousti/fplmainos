@@ -1,6 +1,13 @@
 {
   "results": [
     {
+      "Date": "22 MARCH 2026",
+      "Time": "18:00",
+      "Match": "BW vs RGF",
+      "Score": "3 – 2",
+      "BestOf": "Best of 5"
+    },
+    {
       "Date": "19 MARCH 2026",
       "Time": "18:00",
       "Match": "B5 vs EA",
@@ -38,9 +45,9 @@
   ],
   "upcoming": [
     {
-      "Date": "22 MARCH 2026",
+      "Date": "26 MARCH 2026",
       "Time": "18:00",
-      "Match": "BW vs RGF",
+      "Match": "B5 vs BW",
       "BestOf": "Best of 5"
     }
   ]
